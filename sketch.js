@@ -12,13 +12,14 @@ This example uses p5 preload function to create the classifier
 // Classifier Variable
 let classifier;
 // Model URL
-let imageModelURL = 'https://teachablemachine.withgoogle.com/models/bXy2kDNi/';
+let imageModelURL = 'https://teachablemachine.withgoogle.com/models/qFeHAKonY/';
 
 // Video
 let video;
 let flippedVideo;
 // To store the classification
 let label = "";
+let r,g,b;
 
 // Load the model first
 function preload() {
@@ -44,9 +45,35 @@ function draw() {
 
   // Draw the label
   fill(255);
+  if (label == "なにもない") {
+    label = "じゃんけん";
+  }
   textSize(16);
   textAlign(CENTER);
   text(label, width / 2, height - 4);
+
+  switch(label) {
+    case "ぐー":
+      r = 255;
+      g = 0;
+      b = 0;
+      break;
+    case "ちょき":
+      r = 0;
+      g = 255;
+      b = 0;
+      break;
+    case "ぱー":
+      r = 0;
+      g = 0;
+      b = 255;
+      break;
+  }
+ if (label != "じゃんけん") {
+    fill(r, g, b);
+    ellipse(250.20, 50, 50);
+  }
+  
 }
 
 // Get a prediction for the current video frame
